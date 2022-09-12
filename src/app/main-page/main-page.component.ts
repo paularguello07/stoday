@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.getUserLogged().then((res)=>{
+    /*this.authService.getUserLogged().then((res)=>{
     if(!res){
       this.router.navigate(['/login'])
     }else{
@@ -35,7 +35,7 @@ export class MainPageComponent implements OnInit {
 
     
     
-  })
+  })*/
     
   }
   logout() {
