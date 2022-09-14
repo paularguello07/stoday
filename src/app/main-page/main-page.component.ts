@@ -54,7 +54,7 @@ export class MainPageComponent implements OnInit {
       this.task.user = res.uid
       this.userId = res.uid
       
-      this.load_calendar()
+      this.leer_tasks()
            
     }})
   
@@ -103,9 +103,10 @@ export class MainPageComponent implements OnInit {
         
       });
       console.log("??")
-      this.calendario(this.tasks)
       
+      this.load_calendar()
     });
+    
    
   }
 
@@ -157,7 +158,7 @@ export class MainPageComponent implements OnInit {
           return isLeap() ? 29:28; //Para el año biciesto true -> 29, false -> 28
       }
     }
-    const writeMonth = (month: number) => {
+    const writeMonth = async (month: number) => {
       
       let dates: HTMLElement | null = document.getElementById('dates');
       dates!.innerHTML = '';
@@ -178,8 +179,11 @@ export class MainPageComponent implements OnInit {
               dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" class="Cal_date Cal_item">${num}</div>`;
           }
       } 
-      console.log("?a?")
-      this.leer_tasks()
+      this.calendario(this.tasks)
+      
+    
+  
+      
     }
     
     
