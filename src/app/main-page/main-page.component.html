@@ -54,11 +54,18 @@
                 <div class="container">
                 <h3 >Administrador de tareas</h3>
                 <p>Acá los eventos son administrados</p>
-                <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)">Add task</button>
+                <button class="btn btn-outline-primary mb-2 me-2" (click)="openModal_add(Add_task)">Add task</button>
                 <div class="container bg-white">
-                    <ul>
-                        <li class="Mat_item">Mat I</li>
-                    </ul>
+                    <ul class="tasks">
+                        <li *ngFor="let task of tasks">
+                          
+                            
+                            {{task.nombre}}
+                            <button (click)="openModal_edit(Edit_task,task)"> edit</button>
+                            <button (click)="deleteTask(task.id)"> del</button>
+                            
+                        </li>
+                      </ul>
                 </div>
                 </div>
             </div>
@@ -69,8 +76,6 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <!--Botones de las vistas-->
                           <button class="nav-link" id="nav-mat-tab" data-bs-toggle="tab" data-bs-target="#nav-mat" type="button" role="tab" aria-controls="nav-mat" aria-selected="false">Materia</button>
-                          <button class="nav-link" id="nav-hoy-tab" data-bs-toggle="tab" data-bs-target="#nav-hoy" type="button" role="tab" aria-controls="nav-hoy" aria-selected="false">Hoy</button>
-                          <button class="nav-link " id="nav-semana-tab" data-bs-toggle="tab" data-bs-target="#nav-semana" type="button" role="tab" aria-controls="nav-semana" aria-selected="false">Semana</button>
                           <button class="nav-link active" id="nav-mes-tab" data-bs-toggle="tab" data-bs-target="#nav-mes" type="button" role="tab" aria-controls="nav-mes" aria-selected="false">Mes</button>
                     </div>
                 </nav>
@@ -80,142 +85,9 @@
                         <div class="tab-pane fade" id="nav-mat" role="tabpanel" aria-labelledby="nav-mat-tab" tabindex="0">
                             ---------------
                         </div>
-                        <div class="tab-pane fade" id="nav-hoy" role="tabpanel" aria-labelledby="nav-hoy-tab" tabindex="0">
-                            <div class="container row">
-                                <!--Horas-->
-                                <table class="table">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Campo</th>
-                                        <th scope="col">Tarea</th>
-                                        <th scope="col">Límite</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">00:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">01:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">02:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">03:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">04:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">05:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">06:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">07:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">08:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">09:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">10:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">11:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">12:00 pm</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">01:00 pm</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">02:00 pm</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">03:00 pm</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4:00 pm</th>
-                                            <td>Web</td>
-                                            <td>Terminar maqueta</td>
-                                            <td>4:00</td>
-                                          </tr>
-                                        <tr>
-                                            <th scope="row">05:00 pm</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">06:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">07:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">08:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">09:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">10:00 am</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">11:00 am</th>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                  </table>
-                            </div>
-                        </div>
+                       
             
-                        <div class="tab-pane fade" id="nav-semana" role="tabpanel" aria-labelledby="nav-semana-tab" tabindex="0">
-                            <div id="Cal_Result">
-                                <div class="Cal_info">
-                                    <div class="Cal_prev"> prev </div>
-                                    <div class="Cal_name"> Enero </div>
-                                    <div class="Cal_next"> next </div>
-                                </div>
-                                <div class="Cal_Week">
-                                    <div class="Cal_day Cal_item">Lun</div>
-                                    <div class="Cal_day Cal_item">Mar</div>
-                                    <div class="Cal_day Cal_item">Mie</div>
-                                    <div class="Cal_day Cal_item">Jue</div>
-                                    <div class="Cal_day Cal_item">Vie</div>
-                                    <div class="Cal_day Cal_item">Sab</div>
-                                    <div class="Cal_day Cal_item">Dom</div>
-                                </div>
-                                <div class="event-container">
-                                    <div class="event">
-                                      <!--Fecha del evento-->
-                                        <div class="event-left">
-                                        <div class="event-date">
-                                          <div class="date">8</div>
-                                          <div class="month">Sep</div>
-                                        </div>
-                                      </div>
-                                      <!--Detalles del evento-->
-                                      <div class="event-right">
-                                        <h3 class="event-title">Presentación</h3>
-                                        <div class="event-description">
-                                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
-                                          ratione.
-                                        </div>
-                                        <!--Hora del evento-->
-                                        <div class="event-timing">
-                                          6:00 am
-                                        </div>
-                                      </div>
-                                    </div>
-                            </div>
-                        </div>        
-                    </div>
+                        
             
                     <!--Vista del mes-->
                     <div class="tab-pane fade show active" id="nav-mes" role="tabpanel" aria-labelledby="nav-mes-tab" tabindex="0">
@@ -252,27 +124,52 @@
     
 </body>
 
-<ng-template #content let-modal>
+<ng-template #Add_task let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Add Task</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre</label>
-        <input id="nombresito" class="form-control" name="dp"  >
+        <input id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
 
-        <label for="nombresito">Subject</label>
-        <input id="nombresito" class="form-control" name="dp"  >
+        <label for="materiaaaa">Subject</label>
+        <input id="materiaaaa" class="form-control" name="dp" [(ngModel)]="task.subject" >
           
         <label for="dateOfBirth">Fecha</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha">
           <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
         </div>
         
     </div>
     <div class="modal-footer">
+      <button type="button" class="btn" (click)="addTask()">Agregar</button>
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #Edit_task let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Task</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <label for="nombresito">Nombre</label>
+        <input value=task.nombre id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
+
+        <label for="materiaaaa">Subject</label>
+        <input value=task.subject id="materiaaaa" class="form-control" name="dp" [(ngModel)]="task.subject" >
+          
+        <label for="dateOfBirth">Fecha</label>
+        <div class="input-group">
+          <input value=task.fecha id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="editTask(task.id)">Editar</button>
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
     </div>
   </ng-template>

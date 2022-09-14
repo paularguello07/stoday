@@ -16,6 +16,10 @@ export class DataBaseService {
     return this.firestore.collection(collection).doc(id).set(data);
   }
 
+  public crear_evento(data: any) {
+    return this.firestore.collection("events").add(data);
+  }
+
   public leer_eventos(userid: string){
     return this.firestore.collection("events", ref=> ref.where('user','==',userid)).snapshotChanges();
 
