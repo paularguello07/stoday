@@ -17,7 +17,7 @@ export class DataBaseService {
   }
 
   public leer_eventos(userid: string){
-    return this.firestore.collection("events", ref=> ref.where('user','==',userid)).get();
+    return this.firestore.collection("events", ref=> ref.where('user','==',userid)).snapshotChanges();
 
   }
 

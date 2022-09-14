@@ -54,7 +54,7 @@
                 <div class="container">
                 <h3 >Administrador de tareas</h3>
                 <p>Acá los eventos son administrados</p>
-                <button class="btn border-dark"> Add Task</button> 
+                <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)">Add task</button>
                 <div class="container bg-white">
                     <ul>
                         <li class="Mat_item">Mat I</li>
@@ -247,5 +247,33 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+   
+    
 </body>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Task</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <label for="nombresito">Nombre</label>
+        <input id="nombresito" class="form-control" name="dp"  >
+
+        <label for="nombresito">Subject</label>
+        <input id="nombresito" class="form-control" name="dp"  >
+          
+        <label for="dateOfBirth">Fecha</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
 </html>
