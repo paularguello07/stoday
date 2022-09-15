@@ -17,7 +17,7 @@
 
 <body>
     <!-- INICIO Header / navegador-->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top border-3 border-bottom" style="background-color: #39aff3;" >
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top border-3 border-bottom" style="background-color: #94d7fe;" >
         <div class="container">
             <a href="main-page" class="navbar-brand"><img src="/assets/logo.png" alt="logo" width="90px" height="40px"></a> <!--Para el logo-->
             <!--Boton que aparece cuando se reduce la pantalla-->
@@ -64,13 +64,30 @@
                         <!--Contenido de las vistas-->
                         <div class="tab-pane fade show active" id="nav-mat" role="tabpanel" aria-labelledby="nav-mat-tab" tabindex="0">
                             <div class="containter-fluid border ">
-                                <ul class="tasks">
-                                    <li *ngFor="let task of tasks" class="task_item border d-flex">
-                                        {{task.nombre}}
-                                        <button class="btn btn-primary btn-sm ms-auto" (click)="openModal_edit(Edit_task,task)"> <img src="/assets/edit.png" alt="icono editar" width="20px" height="20px"> </button>
-                                        <button class="btn btn-danger btn-sm ms-2" (click)="deleteTask(task.id)" > <img src="/assets/trash.png" alt="icono borrar" width="20px" height="20px" ></button>
-                                    </li>
-                                  </ul>
+                                <div class="row">
+                                    <div class="column1">
+                                        <div style="display:inline">
+                                            <div *ngFor="let subject of subjects" style="margin: 5px;margin-bottom:3px; padding: 3px 3px; border-radius:5px; border: 2px solid rgb(230, 230, 230) ; color: black">
+                                                <div [style.background]="subject.color" style="position:absolute;height:10px;width:10px;border-radius: 50%;margin-top:10px;margin-left:5px;"></div> <p [style.color]="subject.color" style="margin-left:20px; margin-top:2px;">{{subject.nombre}} 
+                                                    <button style="border: 0px; background:rgb(116, 207, 115); position: absolute; left: 262px; width:40px;"class="btn btn-primary btn-sm ms-auto" (click)="openModal_editMateria(Edit_materia,subject)"> <img src="/assets/edit.png" alt="icono editar" width="20px" height="20px"> </button>
+                                                    <button style="border: 0px; background:rgb(213, 93, 93);position: absolute; left: 300px; width:40px;"class="btn btn-danger btn-sm ms-2" (click)="deleteMateria(subject.id)" > <img src="/assets/trash.png" alt="icono borrar" width="20px" height="20px" ></button>
+                                               </p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column2">
+                                        <ul id="lista_de_tareas" class="tasks">
+                                            <li *ngFor="let task of tasks" class="task_item border d-flex">
+                                                <div [style.background]="task.subject.color" style="height:15px;width:15px;border-radius: 50%;margin-top:10px;margin-left:5px;margin-right:10px;"></div><p style="margin-top:5px;">{{task.nombre}}</p>
+                                                <button style="border: 0px; background:rgb(116, 207, 115);" class="btn btn-primary btn-sm ms-auto" (click)="openModal_edit(Edit_task,task)"> <img src="/assets/edit.png" alt="icono editar" width="20px" height="20px"> </button>
+                                                <button style="border: 0px; background:rgb(213, 93, 93);" class="btn btn-danger btn-sm ms-2" (click)="deleteTask(task.id)" > <img src="/assets/trash.png" alt="icono borrar" width="20px" height="20px" ></button>
+                                            </li>
+                                          </ul>
+                                    </div>
+                                  </div>
+                                
+                                
                             </div>
                             
                         </div>

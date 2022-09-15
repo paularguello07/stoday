@@ -1,3 +1,19 @@
+.column1 {
+  float: left;
+  width: 35%;
+}
+
+.column2 {
+  float: left;
+  width: 65%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 /* Calendario */
 .Cal_info{
   display: flex;

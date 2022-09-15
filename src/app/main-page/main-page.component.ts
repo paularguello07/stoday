@@ -81,6 +81,11 @@ export class MainPageComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  openModal_editMateria(content: any, subjetc: any) {
+    this.subject = subjetc
+    this.modalService.open(content, { centered: true });
+  }
+
   addTask(){
     this.database.crear_evento(this.task).then((res)=>{
       this.modalService.dismissAll('Close click')
@@ -106,6 +111,13 @@ export class MainPageComponent implements OnInit {
   deleteTask(id: string){
     console.log(id)
     this.database.eliminar('events',id).then((res)=>{
+      this.modalService.dismissAll('Close click')
+     })
+
+  }
+  deleteMateria(id: string){
+    console.log(id)
+    this.database.eliminar('subjects',id).then((res)=>{
       this.modalService.dismissAll('Close click')
      })
 
