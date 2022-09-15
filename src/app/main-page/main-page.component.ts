@@ -134,27 +134,36 @@ export class MainPageComponent implements OnInit {
     
     this.tasks=[]
     this.database.leer_eventos(this.userId).subscribe(data => {
+      this.tasks=[]
+      
       data.forEach((element: any) => {
         this.tasks.push({
           ...element.payload.doc.data(),
           id: element.payload.doc.id.toString()
         })  
-        console.log(this.tasks)
+        
       });
-      
-    });
-    this.subjects=[]
-    this.database.leer_subjects(this.userId).subscribe(data => {
-      data.forEach((element: any) => {
-        this.subjects.push({
-          ...element.payload.doc.data(),
-          id: element.payload.doc.id.toString()
-        })
+      console.log(this.tasks)
+      this.subjects=[]
+      this.database.leer_subjects(this.userId).subscribe(data => {
+        this.subjects=[]
+        data.forEach((element: any) => {
+          this.subjects.push({
+            ...element.payload.doc.data(),
+            id: element.payload.doc.id.toString()
+          })
+          
+          
+          
+        }); 
         console.log(this.subjects)
-      }); 
-      this.calendario()
-      
+        this.calendario()
+        
+        
+      });
+        
     });
+    
    
     
    
@@ -240,6 +249,7 @@ export class MainPageComponent implements OnInit {
           }else{
               dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;min-height: 94px; padding-right: 1px; padding-bottom: 5px; " class="Cal_date Cal_item">${num}</div>`;
           }
+          
       } 
       this.leer()
       
