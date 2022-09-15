@@ -30,7 +30,7 @@
                     <ul class="navbar-nav d-flex align-items-center" >
                         <li class="nav-item dropdown text-end">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <img src="/src/assets/user_while.jpg" alt="mdo" width="38" height="38" class="rounded-circle">
+                                <img src="/assets/user_while.jpg" alt="mdo" width="38" height="38" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu" 
                                 style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 50px);">
@@ -63,16 +63,16 @@
                     <div class="tab-content" id="nav-tabContent">
                         <!--Contenido de las vistas-->
                         <div class="tab-pane fade show active" id="nav-mat" role="tabpanel" aria-labelledby="nav-mat-tab" tabindex="0">
-                            <ul class="tasks">
-                                <li *ngFor="let task of tasks">
-                                  
-                                    
-                                    {{task.nombre}}
-                                    <button (click)="openModal_edit(Edit_task,task)"> edit</button>
-                                    <button (click)="deleteTask(task.id)"> del</button>
-                                    
-                                </li>
-                              </ul>
+                            <div class="containter-fluid border ">
+                                <ul class="tasks">
+                                    <li *ngFor="let task of tasks" class="task_item border d-flex">
+                                        {{task.nombre}}
+                                        <button class="btn btn-primary btn-sm ms-auto" (click)="openModal_edit(Edit_task,task)"> <img src="/assets/editar.png" alt="icono editar" width="30px" height="30px"> </button>
+                                        <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)" > <img src="/assets/basura.png" alt="icono borrar" width="30px" height="30px" ></button>
+                                    </li>
+                                  </ul>
+                            </div>
+                            
                         </div>
                        
             
@@ -82,10 +82,10 @@
                     <div class="tab-pane fade " id="nav-mes" role="tabpanel" aria-labelledby="nav-mes-tab" tabindex="0">
                         <div id="Cal_Result">
                             <div class="Cal_info">
-                                <div class="Cal_prev " id="prev-month"> prev </div>
+                                <div class="Cal_prev " id="prev-month"> <img src="/assets/flecha-izq.png" alt="prev-month" width="40px" height="40px"> </div>
                                 <div class="Cal_month" id="month"></div>
                                 <div class="Cal_year" id="year"></div>
-                                <div class="Cal_next" id="next-month"> next </div>
+                                <div class="Cal_next" id="next-month"> <img src="/assets/flecha-der.png" alt="logo" width="40px" height="40px"> </div>
                             </div>
                             <div class="Cal_Week">
                                 <div class="Cal_day Cal_item">Lun</div>
@@ -113,10 +113,10 @@
     
 </body>
 
-
+<!--Esto es el modal de agregar tarea-->
 <ng-template #Add_materia let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Agregar Mataria</h4>
+      <h4 class="modal-title">Agregar Materia</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
@@ -133,7 +133,7 @@
     </div>
   </ng-template>
 
-
+<!--Modal de editar materia-->
   <ng-template #Edit_materia let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Editar Materia</h4>
@@ -153,17 +153,17 @@
     </div>
 </ng-template>
 
-
+<!-- Modal de agregar tarea-->
 <ng-template #Add_task let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Add Task</h4>
+      <h4 class="modal-title">Nueva Tarea</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre</label>
         <input id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
 
-        <label>Subject</label>
+        <label>Materia</label>
         <br>
         <select name="select" [(ngModel)]="task.subject">
             <option *ngFor="let subject of subjects" value="{{subject.id}}">{{subject.nombre}}</option>
@@ -182,16 +182,17 @@
     </div>
   </ng-template>
 
+  <!--Modal de editar tarea-->
   <ng-template #Edit_task let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Editar Task</h4>
+      <h4 class="modal-title">Editar Tarea</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre</label>
         <input value=task.nombre id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
 
-        <label for="materiaaaa">Subject</label>
+        <label for="materiaaaa">Materia</label>
         <input value=task.subject id="materiaaaa" class="form-control" name="dp" [(ngModel)]="task.subject" >
           
         <label for="dateOfBirth">Fecha</label>
