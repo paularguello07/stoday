@@ -58,6 +58,7 @@ export class MainPageComponent implements OnInit {
     }else{
       
       this.task.user = res.uid
+      this.subject.user = res.uid
       this.userId = res.uid
       
       this.load_calendar()
@@ -71,6 +72,10 @@ export class MainPageComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  openModal_addMateria(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
   openModal_edit(content: any, task: any) {
     this.task = task
     this.modalService.open(content, { centered: true });
@@ -78,6 +83,21 @@ export class MainPageComponent implements OnInit {
 
   addTask(){
     this.database.crear_evento(this.task).then((res)=>{
+      this.modalService.dismissAll('Close click')
+     })
+
+  }
+
+  addMateria(){
+    console.log(this.subject)
+    this.database.crear_materia(this.subject).then((res)=>{
+      this.modalService.dismissAll('Close click')
+     })
+
+  }
+
+  editMateria(id: string){
+    this.database.actualizar('subjects',this.subject,id).then((res)=>{
       this.modalService.dismissAll('Close click')
      })
 
