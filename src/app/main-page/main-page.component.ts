@@ -210,7 +210,7 @@ export class MainPageComponent implements OnInit {
       for(let i = startDay(); i>0;i--){
           let num = getTotalDays(monthNumber-1)-(i-1)
           
-          dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" class="Cal_date Cal_item Cal_last-days">
+          dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;height: 94px; padding-right: 1px; padding-bottom: 5px;opacity: .3; " class="Cal_date Cal_item Cal_last-days">
               ${num}
           </div>`;
       }
@@ -218,9 +218,10 @@ export class MainPageComponent implements OnInit {
       for(let i=1; i<=getTotalDays(month); i++){
         let num = i
           if(i===currentDay) {
-              dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" class="Cal_date Cal_item Cal_today">${num}</div>`;
+              dates!.innerHTML += ` <div style=" height: 94px;padding-right: 1px;padding-bottom: 5px; padding: 10px;
+              font-size: large; background: rgb(128, 190, 240); color: white;width: 100%;" id="${num}-${monthNumber+1}" class="Cal_date Cal_item Cal_today">${num}</div>`;
           }else{
-              dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" class="Cal_date Cal_item">${num}</div>`;
+              dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;height: 94px; padding-right: 1px; padding-bottom: 5px; " class="Cal_date Cal_item">${num}</div>`;
           }
       } 
       this.leer()

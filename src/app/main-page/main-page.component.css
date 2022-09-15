@@ -136,9 +136,11 @@
     padding: .5em 1em;
     text-align: left;
 }
-
+#calendario{
+    background-color: rgb(255, 255, 255);
+}
 .Cal_today{
-    background: lightcoral;
+    background: rgb(128, 190, 240);
     color: white;
     width: 100%;
     margin: auto;
