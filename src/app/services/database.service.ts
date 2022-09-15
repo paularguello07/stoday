@@ -25,6 +25,11 @@ export class DataBaseService {
 
   }
 
+  public leer_subjects(userid: string){
+    return this.firestore.collection("subjects", ref=> ref.where('user','==',userid)).snapshotChanges();
+
+  }
+
   public obtenerPorId(coleccion: string, id: string) {
     return this.firestore.collection(coleccion).doc(id).snapshotChanges();
     // El documento que tenga ese id tal cual este ahora, le saca una foto y me lo devuelve

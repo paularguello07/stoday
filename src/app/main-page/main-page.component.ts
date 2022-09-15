@@ -31,11 +31,18 @@ export class MainPageComponent implements OnInit {
   closeResult: string = '';
   userId: string = '';
   tasks: any[] = [];
+  subjects: any[] = [];
   task = {
     id: '',
     nombre: '',
     fecha: '',
     subject: '',
+    user: ''
+  }
+  subject = {
+    id: '',
+    color: '',
+    nombre: '',
     user: ''
   }
   constructor(private modalService: NgbModal, private database: DataBaseService,private authService: AuthService, private router: Router) { 
@@ -53,7 +60,7 @@ export class MainPageComponent implements OnInit {
       this.task.user = res.uid
       this.userId = res.uid
       
-      this.leer_tasks()
+      this.load_calendar()
            
     }})
   
@@ -77,6 +84,7 @@ export class MainPageComponent implements OnInit {
   }
 
   deleteTask(id: string){
+    console.log(id)
     this.database.eliminar('events',id).then((res)=>{
       this.modalService.dismissAll('Close click')
      })
@@ -90,35 +98,52 @@ export class MainPageComponent implements OnInit {
 
   }
 
-  leer_tasks(){
+  leer(){
     
     this.tasks=[]
     this.database.leer_eventos(this.userId).subscribe(data => {
       data.forEach((element: any) => {
         this.tasks.push({
-          id: element.payload.doc.id,
-          ...element.payload.doc.data()
-        })
-        
+          ...element.payload.doc.data(),
+          id: element.payload.doc.id.toString()
+        })  
+        console.log(this.tasks)
       });
-      console.log("??")
       
-      this.load_calendar()
     });
+    this.subjects=[]
+    this.database.leer_subjects(this.userId).subscribe(data => {
+      data.forEach((element: any) => {
+        this.subjects.push({
+          ...element.payload.doc.data(),
+          id: element.payload.doc.id.toString()
+        })
+        console.log(this.subjects)
+      }); 
+      this.calendario()
+      
+    });
+   
     
    
   }
 
-  calendario(tasks: any) {
+  calendario() {
     console.log("ayuda")
-    tasks.forEach(function (task: { [x: string]: any; }) {
+    this.tasks.forEach( (task: { [x: string]: any; }) => {
+      this.subjects.forEach( (subject: { [x: string]: any; }) => {
+        if (task["subject"] == subject["id"]){
+          task["subject"] = {nombre: subject["nombre"], color: subject["color"]}
+        }
+      });
+      
       var nombre = task["nombre"]
       var fecha = task["fecha"]
       var dia = fecha["day"];
       var mes = fecha["month"];
       let event: HTMLElement | null = document.getElementById(`${dia}-${mes}`);
       event!.innerHTML += ` <div>
-              ${nombre}
+              ${nombre}  ${task["subject"]["nombre"]} ${task["subject"]["color"]}
             </div>`;
     });
   }
@@ -178,7 +203,7 @@ export class MainPageComponent implements OnInit {
               dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" class="Cal_date Cal_item">${num}</div>`;
           }
       } 
-      this.calendario(this.tasks)
+      this.leer()
       
     
   
