@@ -36,27 +36,25 @@
                 <a class="nav-link dropdown-toggle align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Sign Up
                 </a>
-                <ul id="registro" class="dropdown-menu" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 50px);">
-                  <form class="px-5 py-3">
-                    <div class="form-group">
+                <ul id="registro" class="dropdown-menu" style="padding:20px;width: 300px; position: absolute; inset: 0px 0px auto auto; margin: 10px; transform: translate(0px, 50px);">
+              
+                    
                       <label style="float: left;">Nombre</label>
                     <input class="form-control m-2" type="email" placeholder="ingrese su nombre" [(ngModel)]="usuario.name">
-                    </div>
                     
-                    <div class="form-group">
+                    
+                    
                       <label style="float: left;">Email</label>
                     <input class="form-control m-2" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
-                    </div>
+                    
               
-                    <div class="form-group">
+                   
                       <label style="float: left;">Password</label>
                     <input class="form-control m-2" type="password" placeholder="ingrese su password" [(ngModel)]="usuario.password">
-                    </div>
-              
-                    <div class="form-group">
+                   
                       <button class="btn btn-primary btn-block m-2" (click)="registrarse()">Registrar</button>
-                    </div>
-                  </form>
+                    
+               
                 </ul>
               </li>
 
@@ -64,8 +62,8 @@
                 <a class="nav-link dropdown-toggle align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Login
                 </a>
-                <ul class="dropdown-menu" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 50px);">
-                  <form class="px-5 py-3">
+                <ul class="dropdown-menu" style="padding:20px;width: 300px; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 50px);">
+                  
                     <div class="form-group">
                       <label>Email</label>
                       <input class="form-control" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
@@ -75,7 +73,7 @@
                     <input class="form-control" type="password" placeholder="ingrese su password" [(ngModel)]="usuario.password">
                     </div>
                     <button class="btn btn-primary btn-block m-2" (click)="Ingresar()">Ingresar</button>
-                  </form>
+                 
                   
                 </ul>
               </li>
