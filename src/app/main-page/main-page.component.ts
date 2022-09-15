@@ -6,7 +6,6 @@ import { from, map } from 'rxjs';
 import { DataBaseService } from 'src/app/services/database.service';
 import { doc, getDoc } from "firebase/firestore";
 import Task from 'src/app/interfaces/task.interface';
-import { CalendarPreviousViewDirective } from 'angular-calendar/modules/common/calendar-previous-view.directive';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

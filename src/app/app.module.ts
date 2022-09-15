@@ -12,8 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ConfigComponent } from './Auth/config/config.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 
 @NgModule({
@@ -31,7 +30,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NgbModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
