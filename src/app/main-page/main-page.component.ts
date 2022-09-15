@@ -162,10 +162,15 @@ export class MainPageComponent implements OnInit {
       var dia = fecha["day"];
       var mes = fecha["month"];
       let event: HTMLElement | null = document.getElementById(`${dia}-${mes}`);
-      event!.innerHTML += ` <div>
-              ${nombre}  ${task["subject"]["nombre"]} ${task["subject"]["color"]}
-            </div>`;
+      event!.innerHTML += `<div style="margin-bottom:3px; padding: 0px 3px; border-radius:5px; border: 2px solid white ; color: black"><div style="position:absolute;
+      height:10px;
+      width:10px;
+      border-radius: 50%;
+      background:${task["subject"]["color"]};
+      margin-top:10px;
+      margin-left:5px;"></div> ${nombre}</div> `;
     });
+    //
   }
 
   load_calendar(){
@@ -210,7 +215,7 @@ export class MainPageComponent implements OnInit {
       for(let i = startDay(); i>0;i--){
           let num = getTotalDays(monthNumber-1)-(i-1)
           
-          dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;height: 94px; padding-right: 1px; padding-bottom: 5px;opacity: .3; " class="Cal_date Cal_item Cal_last-days">
+          dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;min-height: 94px; padding-right: 1px; padding-bottom: 5px;opacity: .3; " class="Cal_date Cal_item Cal_last-days">
               ${num}
           </div>`;
       }
@@ -218,10 +223,10 @@ export class MainPageComponent implements OnInit {
       for(let i=1; i<=getTotalDays(month); i++){
         let num = i
           if(i===currentDay) {
-              dates!.innerHTML += ` <div style=" height: 94px;padding-right: 1px;padding-bottom: 5px; padding: 10px;
+              dates!.innerHTML += ` <div style=" min-height: 94px;padding-right: 1px;padding-bottom: 5px; padding: 10px;
               font-size: large; background: rgb(128, 190, 240); color: white;width: 100%;" id="${num}-${monthNumber+1}" class="Cal_date Cal_item Cal_today">${num}</div>`;
           }else{
-              dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;height: 94px; padding-right: 1px; padding-bottom: 5px; " class="Cal_date Cal_item">${num}</div>`;
+              dates!.innerHTML += ` <div id="${num}-${monthNumber+1}" style="padding: 10px; font-size: large;min-height: 94px; padding-right: 1px; padding-bottom: 5px; " class="Cal_date Cal_item">${num}</div>`;
           }
       } 
       this.leer()

@@ -141,10 +141,10 @@
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre de la Materia</label>
-        <input id="nombresito" class="form-control" name="dp" [(ngModel)]="subject.nombre">
+        <input id="nombresito" class="form-control" name="dp" [(ngModel)]="subject.nombre" required>
 
         <label for="color">Color de la Materia</label>
-        <input type="color" value="#ff0000" id="color" class="form-control" name="dp" [(ngModel)]="subject.color">
+        <input type="color" value="#ff0000" id="color" class="form-control" name="dp" [(ngModel)]="subject.color" required>
         
     </div>
     <div class="modal-footer">
@@ -161,17 +161,17 @@
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre</label>
-        <input id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
+        <input id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre" required>
 
         <label>Materia</label>
-        <br>
-        <select name="select" [(ngModel)]="task.subject">
+        
+        <select class="form-control" name="select" [(ngModel)]="task.subject" required>
             <option *ngFor="let subject of subjects" value="{{subject.id}}">{{subject.nombre}}</option>
         </select>
-        <br>
+        
         <label for="dateOfBirth">Fecha</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha" required>
           <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
         </div>
         
@@ -190,14 +190,16 @@
     </div>
     <div class="modal-body">
         <label for="nombresito">Nombre</label>
-        <input value=task.nombre id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre">
+        <input value=task.nombre id="nombresito" class="form-control" name="dp" [(ngModel)]="task.nombre" required>
 
         <label for="materiaaaa">Materia</label>
-        <input value=task.subject id="materiaaaa" class="form-control" name="dp" [(ngModel)]="task.subject" >
+        <select class="form-control" name="select" [(ngModel)]="task.subject" required>
+            <option *ngFor="let subject of subjects" value="{{subject.id}}">{{subject.nombre}}</option>
+        </select>
           
         <label for="dateOfBirth">Fecha</label>
         <div class="input-group">
-          <input value=task.fecha id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha">
+          <input value=task.fecha id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="task.fecha" required>
           <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
         </div>
         
